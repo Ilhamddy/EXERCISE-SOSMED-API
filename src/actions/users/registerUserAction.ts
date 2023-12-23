@@ -18,12 +18,12 @@ export const registerUserAction = async (data: IUser) => {
     // return users;
     console.log(users);
 
-    const addUSer = await createUserRepo(data);
+    const addUser = await createUserRepo(data);
 
     return {
       status: 200,
       message: "register new User done!",
-      data: addUSer,
+      data: addUser,
     };
   } catch (error) {
     console.log(error);
