@@ -2,7 +2,6 @@ import { comparePassword } from "../../helper/bcrypt";
 import { excludeFields } from "../../helper/excludeFields";
 import { findUsersByEmail } from "../../repositories/users/findEmailByEmail";
 import { findUsersByUsername } from "../../repositories/users/findUserByUsername";
-import { IUser } from "../../types/user.type";
 
 export const loginUserAction = async (
   usernameOrEmail: string,
