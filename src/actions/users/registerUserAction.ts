@@ -1,4 +1,3 @@
-
 import { hashPassword } from "../../helper/bcrypt";
 import { createUserRepo } from "../../repositories/users/createUserRepo";
 import { findUsersByEmailandUsername } from "../../repositories/users/findUsersByEmailandUsername";
@@ -19,7 +18,6 @@ export const registerUserAction = async (data: IUser) => {
 
     const hashedPassword = await hashPassword(password);
     data.password = hashedPassword;
-  
 
     // return users;
     console.log(users);
