@@ -23,7 +23,7 @@ export const registerUserAction = async (data: IUser) => {
     return {
       status: 200,
       message: "register new User done!",
-      data: users,
+      data: addUSer,
     };
   } catch (error) {
     console.log(error);
