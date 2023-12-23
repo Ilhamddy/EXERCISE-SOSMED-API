@@ -11,6 +11,8 @@ export const createUserRepo = async (data: IUser) => {
         password,
       },
     });
+
+    return user;
   } catch (error) {
     console.log(error);
     throw error;

@@ -11,9 +11,9 @@ export const loginUserAction = async (
   try {
     let user;
     if (usernameOrEmail.includes("@")) {
-      user = await findUsersByUsername(usernameOrEmail);
-    } else {
       user = await findUsersByEmail(usernameOrEmail);
+    } else {
+      user = await findUsersByUsername(usernameOrEmail);
     }
 
     if (!user) {

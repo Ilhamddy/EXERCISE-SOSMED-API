@@ -1,3 +1,4 @@
+
 import { hashPassword } from "../../helper/bcrypt";
 import { createUserRepo } from "../../repositories/users/createUserRepo";
 import { findUsersByEmailandUsername } from "../../repositories/users/findUsersByEmailandUsername";
@@ -18,17 +19,17 @@ export const registerUserAction = async (data: IUser) => {
 
     const hashedPassword = await hashPassword(password);
     data.password = hashedPassword;
-    await createUserRepo(data);
+  
 
     // return users;
     console.log(users);
 
-    const addUSer = await createUserRepo(data);
+    const addUser = await createUserRepo(data);
 
     return {
       status: 200,
       message: "register new User done!",
-      data: users,
+      data: addUser,
     };
   } catch (error) {
     console.log(error);
