@@ -1,3 +1,5 @@
+
+import { hashPassword } from "../../helper/bcrypt";
 import { createUserRepo } from "../../repositories/users/createUserRepo";
 import { findUsersByEmailandUsername } from "../../repositories/users/findUsersByEmailandUsername";
 import { IUser } from "../../types/user.type";
@@ -5,7 +7,7 @@ import { IUser } from "../../types/user.type";
 export const registerUserAction = async (data: IUser) => {
   //   console.log("register user action");
   try {
-    const { username, email } = data;
+    const { username, email, password } = data;
     const users = await findUsersByEmailandUsername(username, email);
     //   if (!!users && users.length > 0) throw new Error("User already exists!");
     if (users.length) {
@@ -14,6 +16,10 @@ export const registerUserAction = async (data: IUser) => {
         message: "User already exists!",
       };
     }
+
+    const hashedPassword = await hashPassword(password);
+    data.password = hashedPassword;
+  
 
     // return users;
     console.log(users);
