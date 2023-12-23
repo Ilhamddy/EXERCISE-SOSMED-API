@@ -1,3 +1,5 @@
+import { comparePassword } from "../../helper/bcrypt";
+import { excludeFields } from "../../helper/excludeFields";
 import { findUsersByEmail } from "../../repositories/users/findEmailByEmail";
 import { findUsersByUsername } from "../../repositories/users/findUserByUsername";
 import { IUser } from "../../types/user.type";
@@ -9,9 +11,9 @@ export const loginUserAction = async (
   try {
     let user;
     if (usernameOrEmail.includes("@")) {
-      user = await findUsersByUsername(usernameOrEmail);
-    } else {
       user = await findUsersByEmail(usernameOrEmail);
+    } else {
+      user = await findUsersByUsername(usernameOrEmail);
     }
 
     if (!user) {
@@ -28,17 +30,20 @@ export const loginUserAction = async (
       };
     }
 
-    if (user.password !== password) {
+    const isPasswordValid = await comparePassword(password, user.password);
+    if (!isPasswordValid) {
       return {
         status: 400,
         return: "Invalid Password Credential",
       };
     }
 
+    const dataWithoutPassword = await excludeFields(user, ["password"]);
+
     return {
       status: 200,
       message: "login succes!",
-      data: usernameOrEmail,
+      data: dataWithoutPassword,
     };
   } catch (error) {
     console.log(error);
