@@ -1,5 +1,6 @@
 import { comparePassword } from "../../helper/bcrypt";
 import { excludeFields } from "../../helper/excludeFields";
+import { createToken } from "../../helper/jwt";
 import { findUsersByEmail } from "../../repositories/users/findEmailByEmail";
 import { findUsersByUsername } from "../../repositories/users/findUserByUsername";
 
@@ -39,10 +40,13 @@ export const loginUserAction = async (
 
     const dataWithoutPassword = await excludeFields(user, ["password"]);
 
+    const token = createToken({ id: user.id });
+
     return {
       status: 200,
       message: "login succes!",
       data: dataWithoutPassword,
+      token,
     };
   } catch (error) {
     console.log(error);
