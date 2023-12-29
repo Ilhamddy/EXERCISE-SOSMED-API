@@ -6,11 +6,15 @@ import { updateTweetController } from "../controllers/tweets/updateTweetControll
 
 
 const router = express.Router();
-//router
+
 router.post("/", createTweetController);
 router.get("/", getTweetsController);
 router.delete("/:id", deleteTweetController);
 router.patch("/:id", updateTweetController);
+
+
+router.get("/", getTweetsController);
+
 
 
 export default router;
