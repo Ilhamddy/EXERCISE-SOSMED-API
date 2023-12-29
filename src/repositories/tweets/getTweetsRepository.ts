@@ -2,7 +2,7 @@ import prisma from "../../helper/prisma";
 
 export const getTweetsRepository = async () => {
   try {
-    //add desc
+    //add description
     const expenses = await prisma.tweets.findMany({
       orderBy: {
         id: "desc",
