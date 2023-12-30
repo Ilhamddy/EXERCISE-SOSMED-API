@@ -13,8 +13,6 @@ router.delete("/:id", deleteTweetController);
 router.patch("/:id", updateTweetController);
 
 
-router.get("/", getTweetsController);
-
 
 
 export default router;
