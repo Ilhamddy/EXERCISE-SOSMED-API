@@ -8,7 +8,6 @@ export const createTweetRepository = async (body: ITweet) => {
       data: {
         userId,
         tweet,
-        createdAt,
       },
     });
 
