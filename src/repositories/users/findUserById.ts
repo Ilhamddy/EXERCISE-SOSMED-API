@@ -1,4 +1,3 @@
-import internal from "stream";
 import prisma from "../../helper/prisma";
 
 export const findUserById = async (id: number) => {
